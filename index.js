@@ -1,14 +1,42 @@
-const http = require('http');
+const http = require("http");
+const fs = require("fs/promises");
 
 const PORT = 3000;
 
-const requestListener = (req, res) => {
-    //console.log('REQUEST IS HERE')
-    // const { url, method } = req;
-    //console.log(url, method);
-    res.statusCode = 418;
-    res.end('HELLO FROM SERVER');
-}
+const requestListener = async (req, res) => {
+  const { url } = req;
+
+  if (url === "/index.html") {
+    try {
+      const data = await fs.readFile("./views/index.html", "utf8");
+      res.end(data);
+    } catch(err) {
+        res.statusCode = 404;
+        res.end();
+    }
+  } else {
+    try {
+        const error = await fs.readFile("./views/error.html", "utf8");
+        res.end(error);
+    } catch(err) {
+        res.statusCode = 404;
+        res.end();
+    }
+  }
+};
+
+/*
+  if (url === "/index.html") {
+    fs.readFile("./views/index.html", "utf8").then((data) => {
+    res.end(data);
+    });
+  } else {
+    res.statusCode = 404;
+    fs.readFile("./views/error.html", "utf8").then((data) => {
+      res.end(data);
+    });
+  }
+  */
 
 const server = http.createServer(requestListener);
 
