@@ -3,11 +3,12 @@ const app = express();
 const { validateUser } = require('./middlewares/index');
 const UserController = require('./controllers/UserController');
 
-const PORT = 3000;
+const PORT = 5000;
 
 const bodyParser = express.json(); // это middleware
 
 app.post('/user', bodyParser, validateUser, UserController.createUser);
+app.get('/users', UserController.getAllUsers);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
