@@ -11,6 +11,7 @@ app.post('/user', bodyParser, validateUser, UserController.createUser);
 app.get('/user/:userId', UserController.getOneUser);
 app.get('/users', UserController.getAllUsers);
 app.delete('/user/:userId', UserController.deleteOneUser);
+app.put('/user/:userId', bodyParser, UserController.updateUser);
 
 
 app.listen(PORT, () => {

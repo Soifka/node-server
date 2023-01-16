@@ -31,3 +31,11 @@ module.exports.deleteOneUser = (req, res) => {
     }
     
 }
+
+module.exports.updateUser = (req, res) => {
+    const { body, params: {userId} } = req;
+    const user = User.findOne(Number(userId));
+    user.updateUser(body);
+    const updatedUser = User.findOne(Number(userId));
+    res.send(updatedUser);
+}
