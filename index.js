@@ -8,7 +8,7 @@ const PORT = 5000;
 const bodyParser = express.json(); // это middleware
 
 app.post('/user', bodyParser, validateUser, UserController.createUser);
-app.get('/user', )
+app.get('/user/:userId', UserController.getOneUser);
 app.get('/users', UserController.getAllUsers);
 
 
