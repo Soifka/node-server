@@ -8,7 +8,9 @@ const PORT = 5000;
 const bodyParser = express.json(); // это middleware
 
 app.post('/user', bodyParser, validateUser, UserController.createUser);
+app.get('/user', )
 app.get('/users', UserController.getAllUsers);
+
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
