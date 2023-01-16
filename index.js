@@ -10,6 +10,7 @@ const bodyParser = express.json(); // это middleware
 app.post('/user', bodyParser, validateUser, UserController.createUser);
 app.get('/user/:userId', UserController.getOneUser);
 app.get('/users', UserController.getAllUsers);
+app.delete('/user/:userId', UserController.deleteOneUser);
 
 
 app.listen(PORT, () => {
